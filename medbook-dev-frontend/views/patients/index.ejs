@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Patients List</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+</head>
+
+<body class="container" style="margin-top: 50px;">
+  <% if (messages.success) { %>
+    <div class="alert alert-success" role="alert">
+      <%- messages.success %>
+    </div>
+    <% } %>
+
+      <% if (messages.error) { %>
+        <div class="alert alert-danger" role="alert">
+          <%- messages.error %>
+        </div>
+        <% } %>
+
+          <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-pills w-100">
+                <li class="nav-pill active">
+                  <h1"><b>PATIENTS</b></h1>
+                </li>
+                <li class="nav-pill ml-auto">
+                  <a class="nav-link active" href="/patients/add"><i class="fa fa-plus"></i> NEW PATIENT</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <% if(data.length) { %>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Date Of Birth</th>
+                      <th scope="col">Gender</th>
+                      <th scope="col">Type Of Service</th>
+                      <th scope="col">General Comments</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i=0; i< data.length; i++) { %>
+                      <tr>
+                        <th scope="row">
+                          <%= (i+1) %>
+                        </th>
+                        <td>
+                          <%= data[i].name%>
+                        </td>
+                        <td>
+                          <%= data[i].dob%>
+                        </td>
+                        <td>
+                          <%= data[i].gender%>
+                        </td>
+                        <td>
+                          <%= data[i].tos%>
+                        </td>
+                        <td>
+                          <%= data[i].general%>
+                        </td>
+                      </tr>
+                      <% } %>
+                  </tbody>
+                </table>
+                <% } %>
+                  <!-- if the fetch result is empty -->
+                  <% if(!data.length) { %>
+                    <p class="text-center">No patient record found!</p>
+                    <% } %>
+            </div>
+          </div>
+
+
+          
+</body>
+
+</html>
